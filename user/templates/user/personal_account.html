@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | {{user_info.username}} Кабинет
+{%endblock%}
+
+{%block about_me%}
+  <h3 class="text-center fs-1"></h3>
+  <div class="container">
+    <div class="card text-center col-md-8 mx-auto">
+      <div class="card-header fs-3 bg-primary text-white">
+        Личная информация  {{user_info.username}}
+      </div>
+      <div class="card-body bg-light">
+        <p class="fs-3 text-center">Почта: {{user_info.email}}</p>
+        <p class="fs-3 text-center">
+          Активный:
+          {%if user_info.is_active%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          {%else%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+          {%endif%}
+        </p>
+        <p class="fs-3 text-center">
+          Админ:
+          {%if user_info.is_staff%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          {%else%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+          {%endif%}
+        </p>
+        <p class="fs-3 text-center">
+          Модератор:
+          {%if user_info.is_moderator%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          {%else%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+          {%endif%}
+        </p>
+        {%if user_info.is_moderator or user_info.is_active%}
+          {%if user_info.is_superuser%}
+            <p>Это админ и админ может тебя самого нахуй забанить</p>
+          {%else%}
+            <a href="{%url 'baned_user' user_info.pk%}" class="btn btn-outline-danger">Выдать бан</a>
+          {%endif%}
+        {%endif%}
+      </div>
+        <a href="{%url 'my_favorite_news'%}" class="btn btn-outline-primary col-8 mt-3 mx-auto text-center mb-3" aria-current="true">
+          Избранные новости
+          <span class="badge rounded-pill bg-danger">
+            {{request.user.favorite_news.all.count}}
+          </span>
+        </a>
+    </div>
+  </div>
+
+{%endblock%}

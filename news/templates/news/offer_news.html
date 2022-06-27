@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | Предложить новость
+{%endblock%}
+
+{%block content%}
+  <h1 class="mb-5">Предложить новость</h1>
+  <form action="{%url 'offer_news' %}" enctype="multipart/form-data" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary btn-block">
+      Отправить
+    </button>
+  </form>
+{%endblock%}

@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{%url 'home'%}">НеГуглится</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{%url 'home'%}">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'about_me'%}">Обо мне</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'contact'%}">Связаться со мной</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'portfolio'%}">Мои проекты</a>
+        </li>
+        {%if request.user.is_superuser or request.user.is_moderator%}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'create'%}">Добавить новость</a>
+          </li>
+          {%if request.user.is_superuser or request.user.is_moderator%}
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'list_delete_posts'%}">Удалить новость</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'offer_list_news'%}">Предложенные новости</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'list_comment_moder'%}">Коментарии на модерации</a>
+            </li>
+          {%endif%}
+        {%elif request.user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'offer_news'%}">Предложить новость</a>
+          </li>
+        {%endif%}
+      </ul>
+      {%if request.user.is_authenticated%}
+        Добро пожаловать, {{user.username}} | <a href="{%url 'personal_account' request.user.pk%}">Личный кабинет</a> | <a href="{%url 'logout'%}">Выход</a>
+      {%else%}
+        <a class="btn btn-success text-white" href="{%url 'register'%}">
+          Регистрация
+        </a>
+        |
+        <a class="btn btn-success text-white" href="{%url 'login'%}">
+          Войти
+        </a>
+      {%endif%}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | {{title_head}}
+{%endblock%}
+
+{%block list_comment_moder%}
+  <h2 class="text-center mb-5">Список комментарии на модерацию</h2>
+  <div class="container">
+    <div class="row">
+      {%for comment in comments%}
+        {%if comment.status == False%}
+          <div class="card col-md-4">
+            <div class="card-header">
+              <a href="{{comment.user.get_absolute_url}}" class="text-muted fst-italic ">Автор комментария: {{comment.user}}</a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                На новост: {{comment.news}}
+              </h5>
+              <p class="card-text">Текст коментария: {{comment.text}}</p>
+              <p class="card-text">Создан комментарий: {{comment.created_data}}</p>
+              <a href="{%url 'update_comment' comment.pk%}" class="btn btn-warning col-12 mx-auto fw-bolder mb-3">Одобрить комментарий</a>
+            </div>
+          </div>
+        {%endif%}
+      {%endfor%}
+    </div>
+  </div>
+{%endblock%}

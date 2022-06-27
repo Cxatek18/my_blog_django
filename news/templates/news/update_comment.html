@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | Изменение комментария
+{%endblock%}
+
+{%block content%}
+  <h1>Изменение комментария</h1>
+  <form action="{%url 'update_comment' comment_item.pk%}" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary btn-block">
+      Изменить комментарий
+    </button>
+  </form>
+{%endblock%}

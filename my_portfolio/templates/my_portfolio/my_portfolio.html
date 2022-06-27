@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | {{title_head}}
+{%endblock%}
+
+{%block content%}
+  {%for item in portfolio%}
+    <div class="card">
+      <div class="card-header text-center">
+        Мой проект
+      </div>
+      <div class="card-body">
+        <h5 class="card-title text-center fs-1">{{item.title}}</h5>
+        {%if item.photo%}
+          <img src="{{item.photo.url}}" class="card-img-top" width="350" alt="Фото">
+        {%endif%}
+        <p class="card-text mt-4 fs-4">{{item.description}}</p>
+        <a href="{{item.get_absolute_url}}" class="btn btn-primary">Посмотреть проект</a>
+        <a href="{{item.link_project}}" target="_blank" class="btn btn-primary">Перейти на сайт проекта</a>
+      </div>
+    </div>
+  {%endfor%}
+{%endblock%}

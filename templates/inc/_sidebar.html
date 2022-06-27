@@ -1,0 +1,21 @@
+{%load news_tags%}
+{%comment%}
+<div class="list-group">
+  {% get_categories as categories %}
+  {%for item in categories%}
+    <a href="{%url 'category' item.pk%}" class="list-group-item list-group-item-action active" aria-current="true">
+      {{item.title}}
+    </a>
+  {%endfor%}
+</div>
+{%endcomment%}
+
+{%show_categories%}
+{%if request.user.is_authenticated%}
+  <a href="{%url 'my_favorite_news'%}" class="btn btn-outline-primary col-12 mt-3" aria-current="true">
+    Избранные новости
+    <span class="badge rounded-pill bg-danger">
+      {{request.user.favorite_news.all.count}}
+    </span>
+  </a>
+{%endif%}

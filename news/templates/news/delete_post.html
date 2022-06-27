@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | Удаление поста
+{%endblock%}
+
+{%block delete_news%}
+  <h1 class="text-center">Удаление поста</h1>
+  <div class="alert alert-danger col-4 text-center mx-auto">
+    Осторожно, после удаление данные нельзя будет вернуть или востановить.
+    Подумайте точно ли вы хотите удалить данный пост.
+    Если хотите удалить то нажмите на кнопку "Удалить пост".
+  </div>
+  <form method="post">
+    {%csrf_token%}
+    <button class="btn btn-danger mx-auto fw-bolder mb-3 d-grid gap-2 col-3" type="submit">Удалить пост</button>
+  </form>
+{%endblock%}

@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | Ошибка
+{%endblock%}
+
+{%block error404%}
+  <h3 class="text-center">Упс, что-то пошло не так</h3>
+  <div class="alert alert-danger col-md-6 mx-auto" role="alert">
+    Данная страница не доступна.
+  </div>
+{%endblock%}

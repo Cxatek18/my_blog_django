@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | {{title_head}}
+{%endblock%}
+
+{%block about_me%}
+  <h1 class="text-center">Обо мне</h1>
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <div class="content__text col-md-7">
+        <p class="text-center fs-4">
+          Привет меня зовут Григорий и я начинающий
+          Python разработчик. мне 21 год, обожаю прогу и аниме.
+        </p>
+        <h3 class="text-center mt-4 mb-4">Связаться со мной</h3>
+        <a href="https://vk.com/gregori18" class="btn btn-outline-info mx-auto fw-bolder mb-3 d-grid gap-2 col-4" target="_blank">ВКОНТАКТЕ</a>
+        <a href="https://t.me/Cxatek18" class="btn btn-outline-info mx-auto fw-bolder mb-3 d-grid gap-2 col-4" target="_blank">Телеграм</a>
+      </div>
+      <div class="image__me col-md-4">
+        <img src="/media/photos_me/me.jpg" width="550" alt="Фото">
+      </div>
+    </div>
+  </div>
+{%endblock%}

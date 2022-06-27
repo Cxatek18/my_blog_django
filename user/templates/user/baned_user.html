@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+  {{block.super}} | Бан юзера
+{%endblock%}
+
+{%block content%}
+  <h1 class="mb-5">Бан пользователя</h1>
+  <form action="{%url 'baned_user' user_item.pk%}" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary btn-block">
+      Отправить
+    </button>
+  </form>
+{%endblock%}
